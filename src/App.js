@@ -1,22 +1,17 @@
-import logo from './logo.svg';
+/* eslint-disable no-unused-vars */
 import './App.css';
+import ChooseFile from './fs/chooseFile';
+import FileView from './fs/fileView';
+import TextWrapper from './fs/textFile/textWrapper';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <ChooseFile />
+          <TextWrapper/>
+        </div>
       </header>
     </div>
   );
