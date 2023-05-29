@@ -1,3 +1,10 @@
+# 오픈소스 번역앱 만들기
+1. 트라도스, MemoQ 대체
+2. DeepL API를 활용해 번역 효율 및 속도 증대
+3. Electron을 사용한 멀티플랫폼 번역앱
+4. 공동작업 기능 염두
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
