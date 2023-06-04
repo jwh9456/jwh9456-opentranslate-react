@@ -1,7 +1,7 @@
 {
-  "name": "love-react",
+  "name": "jwh9456-opentransltor-react",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "main": "public/main.js",
   "homepage": "./",
   "dependencies": {
@@ -12,6 +12,7 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.7",
+    "recoilize": "^3.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
