@@ -2,7 +2,6 @@
 import './App.css';
 import ChooseFile from './fs/chooseFile';
 import FileView from './fs/fileView';
-import TextWrapper from './fs/textFile/textWrapper';
 
 function App() {
   return (
@@ -10,7 +9,7 @@ function App() {
       <header className="App-header">
         <div>
           <ChooseFile />
-          <TextWrapper/>
+          <FileView/>
         </div>
       </header>
     </div>

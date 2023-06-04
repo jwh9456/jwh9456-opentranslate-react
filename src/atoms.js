@@ -3,7 +3,7 @@ import { atom, selector } from "recoil";
 
 export const currentFile = atom({
     key: 'currentFile',
-    default: '',
+    default: []
 });
 export const getCurrentFile = selector({
     key: "getCurrentFile",
@@ -14,7 +14,7 @@ export const getCurrentFile = selector({
 
 export const parsedCurrentFile = atom({
     key: 'parsedCurrentFile',
-    default: '',
+    default: {},
 })
 
 export const getParsedCurrentFile = selector({
