@@ -1,15 +1,11 @@
-//https://mui.com/material-ui/react-autocomplete/
-//materail ui
-
 import React, { useState, useRef } from 'react';
 import { Input, Button } from '@mui/material';
-import {text, setText} from 'atoms.js'
+import { textState, translatedTextState } from './atoms';
 import { useRecoilState } from 'recoil';
 
-
 function App() {
-  const [text, setText] = useRecoilState(text);
-  const [translatedText, setTranslatedText] = useRecoilState(translatedText);
+  const [text, setText] = useRecoilState(textState);
+  const [translatedText, setTranslatedText] = useRecoilState(translatedTextState);
   const [downloadLink, setDownloadLink] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -17,9 +13,10 @@ function App() {
     const file = e.target.files[0];
     if (file) {
       const fileText = await file.text();
+      const lines = fileText.split('\n');
       setText(fileText);
-      setTranslatedText(new Array(fileText.split('\n').length).fill(''));
-      setDownloadLink(null); // Reset the download link
+      setTranslatedText(new Array(lines.length).fill(''));
+      setDownloadLink(null);
     }
   };
 
@@ -35,7 +32,6 @@ function App() {
     const url = URL.createObjectURL(blob);
     setDownloadLink(url);
 
-    // Trigger the download
     const a = document.createElement('a');
     a.style.display = 'none';
     a.href = url;
@@ -44,7 +40,6 @@ function App() {
     a.click();
     document.body.removeChild(a);
 
-    // Clean up the URL
     URL.revokeObjectURL(url);
   };
 
@@ -63,29 +58,25 @@ function App() {
               />
             </label>
           </div>
-          <div>
-            {text && (
-              <div>
-                {text.split('\n').map((line, i) => (
-                  <div key={i}>
-                    {line}
-                    <textarea
-                      value={translatedText[i] || ''}
-                      onChange={(e) => handleTranslatedTextChange(i, e.target.value)}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          <div>
-            {text && (
-              <div>
-                <div>Click the button to save text to clipboard</div>
-                <Button onClick={handleExport}>Export File</Button>
-              </div>
-            )}
-          </div>
+          {text && (
+            <div>
+              {text.split('\n').map((line, i) => (
+                <div key={i}>
+                  {line}
+                  <textarea
+                    value={translatedText[i] || ''}
+                    onChange={(e) => handleTranslatedTextChange(i, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+          {text && (
+            <div>
+              <div>Click the button to save text to clipboard</div>
+              <Button onClick={handleExport}>Export File</Button>
+            </div>
+          )}
           {downloadLink && (
             <div>
               <a href={downloadLink} download="translated.txt">
