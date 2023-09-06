@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Input, Button } from '@mui/material';
+import { Input, Button, Fab, TextField } from '@mui/material';
 import { textState, translatedTextState } from './atoms';
 import { useRecoilState } from 'recoil';
+import './App.css';
 
 function App() {
   const [text, setText] = useRecoilState(textState);
@@ -48,22 +49,25 @@ function App() {
       <header className="App-header">
         <div>
           <div>
-            <label>
-              Import text
-              <Input
-                type="file"
-                accept=".txt"
-                onInput={handleFileInputChange}
-                ref={fileInputRef}
-              />
-            </label>
-          </div>
+            <Fab color='primary' aria-label='add'>
+              <label for="uploadfile">
+                dd
+              </label>
+            </Fab>
+            <Input
+              id="uploadfile"
+              type="file"
+              accept=".txt"
+              onInput={handleFileInputChange}
+              ref={fileInputRef}
+            />
+          
           {text && (
             <div>
               {text.split('\n').map((line, i) => (
                 <div key={i}>
                   {line}
-                  <textarea
+                  <TextField variant='filled'
                     value={translatedText[i] || ''}
                     onChange={(e) => handleTranslatedTextChange(i, e.target.value)}
                   />
@@ -74,7 +78,7 @@ function App() {
           {text && (
             <div>
               <div>Click the button to save text to clipboard</div>
-              <Button onClick={handleExport}>Export File</Button>
+              <Button variant='contained' onClick={handleExport}>Export File</Button>
             </div>
           )}
           {downloadLink && (
@@ -84,9 +88,10 @@ function App() {
               </a>
             </div>
           )}
+          </div>
         </div>
-      </header>
-    </div>
+      </header >
+    </div >
   );
 }
 
