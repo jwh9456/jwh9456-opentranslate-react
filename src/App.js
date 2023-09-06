@@ -3,10 +3,13 @@
 
 import React, { useState, useRef } from 'react';
 import { Input, Button } from '@mui/material';
+import {text, setText} from 'atoms.js'
+import { useRecoilState } from 'recoil';
+
 
 function App() {
-  const [text, setText] = useState('');
-  const [translatedText, setTranslatedText] = useState([]);
+  const [text, setText] = useRecoilState(text);
+  const [translatedText, setTranslatedText] = useRecoilState(translatedText);
   const [downloadLink, setDownloadLink] = useState(null);
   const fileInputRef = useRef(null);
 

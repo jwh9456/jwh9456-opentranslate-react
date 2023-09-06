@@ -1,25 +1,41 @@
 /* eslint-disable no-unused-vars */
 import { atom, selector } from "recoil";
 
-export const currentFile = atom({
-    key: 'currentFile',
+export const text = atom({
+    key: 'text',
+    default: ''
+});
+
+export const getText = selector({
+    key: 'getText',
+    get: ({get}) => {
+        return get(text);
+    }
+});
+
+export const setText = selector({
+    key: 'setText',
+    set: ({set}, newText) => {
+        set(text, newText);
+    }
+});
+
+
+export const translatedText = atom({
+    key: 'translatedText',
     default: []
 });
-export const getCurrentFile = selector({
-    key: "getCurrentFile",
-    get: ({get}) =>{
-        return get(currentFile);
+
+export const getTranslatedText = selector({
+    key: 'getTranslatedText',
+    get: ({get}) => {
+        return get(translatedText);
     }
 });
 
-export const parsedCurrentFile = atom({
-    key: 'parsedCurrentFile',
-    default: {},
-})
-
-export const getParsedCurrentFile = selector({
-    key:"getParsedCurrentFile",
-    get: ({get}) =>{
-        return get(parsedCurrentFile);
+export const setTranslatedText = selector({
+    key: 'setTranslatedText',
+    set: ({set}, newTranslatedText) => {
+        set(translatedText, newTranslatedText);
     }
-})
+});
